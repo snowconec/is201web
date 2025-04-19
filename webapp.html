@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--This needs to be accessable from the simple page and they both need to connect to each other-->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +7,7 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background: #fdf6f0;
+      background: #dfebd3;
       color: #333;
       display: flex;
       flex-direction: column;
@@ -20,17 +19,17 @@
     }
 
     .container {
-      background: #fff;
+      background: #ffffff;
       padding: 30px;
       border-radius: 20px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      max-width: 500px;
+      max-width: 550px;
       text-align: center;
     }
 
     h1 {
       font-size: 2rem;
-      color: #ff7f50;
+      color: #6b9666;
       margin-bottom: 20px;
     }
 
@@ -41,18 +40,18 @@
       color: #444;
     }
 
-    #translation {
+    #translation, #explanation {
       font-size: 1rem;
-      color: #888;
+      color: #666;
       min-height: 30px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     button {
       background: #ff7f50;
       color: white;
       border: none;
-      padding: 12px 24px;
+      padding: 10px 18px;
       font-size: 1rem;
       border-radius: 10px;
       cursor: pointer;
@@ -63,59 +62,78 @@
     button:hover {
       background: #ff5722;
     }
+
+    .nav-btn {
+      background: #888;
+    }
+
+    .nav-btn:hover {
+      background: #555;
+    }
   </style>
 </head>
 <body>
-  <a href="scratch.html">My Scratch Page</a>
   <div class="container">
     <h1>😂 Korean Joke Generator 😂</h1>
     <div id="joke">Click the button to hear a Korean joke!</div>
     <div id="translation"></div>
+    <div id="explanation"></div>
     <button onclick="tellJoke()">Tell Me a Joke</button>
-    <button onclick="toggleTranslation()">Translate to English</button>
+    <button onclick="toggleTranslation()">Translate & Explain</button>
+    <button class="nav-btn" onclick="goToScratch()">Go to Scratch Page</button>
   </div>
 
   <script>
     const jokes = [
       {
         korean: "왜 바나나는 병원에 갔을까? 껍질이 벗겨져서!",
-        english: "Why did the banana go to the hospital? Because it got peeled!"
+        english: "Why did the banana go to the hospital? Because it got peeled!",
+        explanation: "In Korean, '껍질이 벗겨지다' means 'the peel came off,' but it also sounds like being injured or hurt—so it plays on being in need of medical help."
       },
       {
         korean: "소가 웃으면 뭐게요? 우하하~",
-        english: "What happens when a cow laughs? Moo-ha-ha!"
+        english: "What happens when a cow laughs? Moo-ha-ha!",
+        explanation: "The joke is a pun on '우하하' which mimics a cow sound (우, pronounced 'oo' like 'moo') mixed with laughter ('하하')."
       },
       {
         korean: "컴퓨터가 추우면? 윈도우를 닫아야죠!",
-        english: "When a computer is cold? You should close the Windows!"
+        english: "When a computer is cold? You should close the Windows!",
+        explanation: "A pun on the literal 'window' and the Windows operating system—closing either one makes things warmer!"
       },
       {
         korean: "돼지가 길을 잃으면? 돈 잃은 거죠!",
-        english: "If a pig gets lost? You've lost some money!"
+        english: "If a pig gets lost? You've lost some money!",
+        explanation: "‘돈’ means both ‘money’ and is the sound for 'pig' (as in '돼지' → '돈'). Losing a pig = losing money!"
       },
       {
         korean: "학교에 안 가는 벌레는? 벌레이터!",
-        english: "What bug doesn’t go to school? A bug-lazy (벌레이터 = pun on escalator)!"
+        english: "What bug doesn’t go to school? A bug-lazy (벌레이터)!",
+        explanation: "‘벌레’ means ‘bug’ and ‘레이터’ comes from ‘에스컬레이터’—a made-up lazy bug pun!"
       },
       {
         korean: "고양이가 컴퓨터를 싫어하는 이유는? 마우스 때문이죠!",
-        english: "Why does a cat hate computers? Because of the mouse!"
+        english: "Why does a cat hate computers? Because of the mouse!",
+        explanation: "Cats chase mice—and a computer mouse sounds just like the real one!"
       },
       {
         korean: "피자 한 판이 웃으면 뭐게요? 피자웃!",
-        english: "What happens when a pizza laughs? Pizza-laugh!"
+        english: "What happens when a pizza laughs? Pizza-laugh!",
+        explanation: "This is a made-up word combining '피자' (pizza) and '웃' (laugh). Just silly wordplay!"
       },
       {
         korean: "시금치가 도망가면? 추적시금치!",
-        english: "What if spinach runs away? You chase-spinach!"
+        english: "What if spinach runs away? You chase-spinach!",
+        explanation: "Plays on the word ‘추적’ (chase/follow) and '시금치' (spinach). It's just silly visual wordplay!"
       },
       {
         korean: "펭귄이 지갑을 잃어버리면? 냉동실에 두고 왔나 봐요!",
-        english: "If a penguin loses its wallet? Maybe it left it in the freezer!"
+        english: "If a penguin loses its wallet? Maybe it left it in the freezer!",
+        explanation: "Penguins live in cold places. So if it loses something, maybe it's in the freezer!"
       },
       {
         korean: "딸기가 회사에 가면 뭐가 될까요? 딸기회사원!",
-        english: "What does a strawberry become when it goes to work? A strawberry office worker!"
+        english: "What does a strawberry become when it goes to work? A strawberry office worker!",
+        explanation: "A play on the word ‘회사원’ (office worker) and ‘딸기’ (strawberry). It's silly word blending!"
       }
     ];
 
@@ -127,18 +145,24 @@
       showingTranslation = false;
       document.getElementById('joke').textContent = jokes[currentIndex].korean;
       document.getElementById('translation').textContent = '';
+      document.getElementById('explanation').textContent = '';
     }
 
     function toggleTranslation() {
       if (currentIndex === null) return;
-      const translation = jokes[currentIndex].english;
       if (!showingTranslation) {
-        document.getElementById('translation').textContent = translation;
+        document.getElementById('translation').textContent = jokes[currentIndex].english;
+        document.getElementById('explanation').textContent = "🤓 Why it's funny: " + jokes[currentIndex].explanation;
         showingTranslation = true;
       } else {
         document.getElementById('translation').textContent = '';
+        document.getElementById('explanation').textContent = '';
         showingTranslation = false;
       }
+    }
+
+    function goToScratch() {
+      window.location.href = "scratch.html";
     }
   </script>
 </body>
