@@ -1,0 +1,71 @@
+h1{
+    text-align: center;
+    color: rgb(49, 72, 48);
+    font-size: 300%;
+}
+body{
+    background-color: rgb(248, 255, 228);
+}
+p{
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.FirstQuestion{
+    text-align: center;
+    
+}
+.centeredlist{
+    display: inline-block;
+    text-align: left;
+    list-style-position: inside;
+}
+li{
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.Links{
+    text-align: center;
+    font-size: 20px;
+
+}
+a:hover{
+    color: rgb(172, 230, 255);
+}
+a:link{
+    color: black;
+}
+
+
+.onepic{
+        text-align: center;
+        margin: 50px 0;
+}
+.onepic img{
+        width: 450px; /* adjust size as needed */
+        height: auto;
+        border-radius: 8px; /* optional styling */
+      }
+iframe{
+    display: block;
+    margin: 0 auto;
+    
+}
+.Jbox{
+    text-align: center;
+    margin: 50px 0;
+}
+.Jbox img{
+    width: 450px; /* adjust size as needed */
+    height: auto;
+    border-radius: 8px; /* optional styling */
+  }
+  .tableau-viz {
+    text-align: center;
+    margin: 30px auto;
+    max-width: 1000px;
+  }
+  .back{
+    font-size:160%;
+    font-style: italic;
+  }

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--This needs to be accessable from the simple page and they both need to connect to each other-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Korean Joke Generator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #fdf6f0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #ff7f50;
+      margin-bottom: 20px;
+    }
+
+    #joke {
+      font-size: 1.2rem;
+      margin: 20px 0 10px;
+      min-height: 50px;
+      color: #444;
+    }
+
+    #translation {
+      font-size: 1rem;
+      color: #888;
+      min-height: 30px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #ff7f50;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 5px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff5722;
+    }
+  </style>
+</head>
+<body>
+  <a href="scratch.html">My Scratch Page</a>
+  <div class="container">
+    <h1>😂 Korean Joke Generator 😂</h1>
+    <div id="joke">Click the button to hear a Korean joke!</div>
+    <div id="translation"></div>
+    <button onclick="tellJoke()">Tell Me a Joke</button>
+    <button onclick="toggleTranslation()">Translate to English</button>
+  </div>
+
+  <script>
+    const jokes = [
+      {
+        korean: "왜 바나나는 병원에 갔을까? 껍질이 벗겨져서!",
+        english: "Why did the banana go to the hospital? Because it got peeled!"
+      },
+      {
+        korean: "소가 웃으면 뭐게요? 우하하~",
+        english: "What happens when a cow laughs? Moo-ha-ha!"
+      },
+      {
+        korean: "컴퓨터가 추우면? 윈도우를 닫아야죠!",
+        english: "When a computer is cold? You should close the Windows!"
+      },
+      {
+        korean: "돼지가 길을 잃으면? 돈 잃은 거죠!",
+        english: "If a pig gets lost? You've lost some money!"
+      },
+      {
+        korean: "학교에 안 가는 벌레는? 벌레이터!",
+        english: "What bug doesn’t go to school? A bug-lazy (벌레이터 = pun on escalator)!"
+      },
+      {
+        korean: "고양이가 컴퓨터를 싫어하는 이유는? 마우스 때문이죠!",
+        english: "Why does a cat hate computers? Because of the mouse!"
+      },
+      {
+        korean: "피자 한 판이 웃으면 뭐게요? 피자웃!",
+        english: "What happens when a pizza laughs? Pizza-laugh!"
+      },
+      {
+        korean: "시금치가 도망가면? 추적시금치!",
+        english: "What if spinach runs away? You chase-spinach!"
+      },
+      {
+        korean: "펭귄이 지갑을 잃어버리면? 냉동실에 두고 왔나 봐요!",
+        english: "If a penguin loses its wallet? Maybe it left it in the freezer!"
+      },
+      {
+        korean: "딸기가 회사에 가면 뭐가 될까요? 딸기회사원!",
+        english: "What does a strawberry become when it goes to work? A strawberry office worker!"
+      }
+    ];
+
+    let currentIndex = null;
+    let showingTranslation = false;
+
+    function tellJoke() {
+      currentIndex = Math.floor(Math.random() * jokes.length);
+      showingTranslation = false;
+      document.getElementById('joke').textContent = jokes[currentIndex].korean;
+      document.getElementById('translation').textContent = '';
+    }
+
+    function toggleTranslation() {
+      if (currentIndex === null) return;
+      const translation = jokes[currentIndex].english;
+      if (!showingTranslation) {
+        document.getElementById('translation').textContent = translation;
+        showingTranslation = true;
+      } else {
+        document.getElementById('translation').textContent = '';
+        showingTranslation = false;
+      }
+    }
+  </script>
+</body>
+</html>
